@@ -1,0 +1,20 @@
+{
+  "name": "incentify-billing",
+  "version": "2.11.0",
+  "private": true,
+  "description": "INCENTIFY Private Limited — Billing, Balance Sheet, Financial Reports & Integrated Razorpay Payment Gateway Manager",
+  "main": "src/main.js",
+  "author": "INCENTIFY Private Limited",
+  "license": "UNLICENSED",
+  "scripts": {
+    "start": "electron .",
+    "pack:win": "electron-packager . \"INCENTIFY Billing\" --platform=win32 --arch=x64 --out=dist --overwrite --icon=assets/icon.ico --asar --prune=true"
+  },
+  "dependencies": {
+    "xlsx": "^0.18.5"
+  },
+  "devDependencies": {
+    "@electron/packager": "^18.3.6",
+    "electron": "28.3.3"
+  }
+}
