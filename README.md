@@ -1,33 +1,23 @@
-# INCENTIFY Billing
+# INCENTIFY ERP — GitHub Frontend v5.1
 
-Private desktop billing and finance application for **INCENTIFY Private Limited**.
+Public static frontend converted from the verified INCENTIFY Billing v2.11 Electron UI.
 
-**Current baseline:** v2.11.0  
-**Tagline:** We Grow Together.
+## Public flow
+`index.html` → approved-email OTP → `erp.html` → private cloud data. Admins can open `admin.html`.
 
-## Baseline scope
+## Backend
+Configured Apps Script deployment:
+`https://script.google.com/macros/s/AKfycby1_E9Kk6qpv3LPXZB7j5lF_XLSiXa_Yc8l4dgRKNykXIfkd9VO9LTLSroTnPtnQUoY/exec`
 
-This repository baseline preserves the existing v2.11 application functionality, including customers, invoices, payments, Razorpay integration, expenses, earnings, P&L, balance sheet, PDF/Excel exports, business settings, notifications and existing navigation/workflows.
+The frontend communicates through a hidden Apps Script **Bridge.html** iframe. This avoids cross-origin fetch/CORS problems while keeping the ERP UI on GitHub Pages. The Apps Script page is only a transport bridge, not the ERP frontend.
 
-## Run locally
+## GitHub Pages
+1. Push this folder to the public `INCENTIFY-Billing` repository.
+2. Repository Settings → Pages → Deploy from branch → `main` / root.
+3. Public URL should be `https://priyaboddipalli.github.io/INCENTIFY-Billing/`.
 
-```powershell
-npm install
-npm start
-```
-
-## Build Windows portable package
-
-```powershell
-npm run pack:win
-```
-
-The packaged directory is created under `dist/`.
+## Preserved ERP modules
+Dashboard, New Invoice, Invoices, Bills/Payments, Razorpay Payment Gateway, Customers, History, Finance, Expenses, Earnings, P&L, Balance Sheet, Business Settings, invoice printing/PDF workflow, financial XLSX export, payment receipts.
 
 ## Security
-
-Do not commit production databases, Razorpay secrets, device credentials, API keys, Google credentials or customer financial data. Runtime data and secrets must stay outside Git and are excluded by `.gitignore`.
-
-## Central database migration
-
-v2.11 is the local-storage baseline. The planned v2.12 infrastructure migration will replace only the persistence layer with a private central backend so multiple authorized devices operate against one authoritative database. See `docs/CENTRAL_DATABASE_PLAN.md`.
+Public Git contains no customer database, OTP codes, session tokens, Razorpay secret, Google credentials or Drive files. All protected backend actions require an active server session and role authorization.

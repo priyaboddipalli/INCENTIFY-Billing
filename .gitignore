@@ -1,33 +1,6 @@
-# Dependencies and builds
-node_modules/
-dist/
-out/
 *.log
-npm-debug.log*
-
-# Runtime/local database - NEVER COMMIT CLIENT DATA
-data.json
-data.backup-*.json
-*.db
-*.sqlite
-*.sqlite3
-incentify-billing/
-
-# Credentials and secrets
-.env
-.env.*
-!.env.example
-*secret*.json
-*credentials*.json
-integrated-gateway-secrets.json
-
-# OS / editors
 .DS_Store
 Thumbs.db
-.vscode/
-.idea/
-
-# Temporary files
-*.tmp
-*.bak
-*.swp
+.env
+.env.*
+secrets.*
