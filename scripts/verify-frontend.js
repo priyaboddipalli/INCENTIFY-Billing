@@ -11,7 +11,8 @@ t('central invoice reservation retained',erp.includes('reserveInvoiceNumber')&&e
 t('invoice print copies original ERP CSS',adapter.includes("querySelectorAll('style,link[rel=\"stylesheet\"]')"));
 t('finance PDF workflow retained',adapter.includes('financeHtml')&&adapter.includes('INCENTIFY Finance Report'));
 t('Apps Script URL configured',config.includes('script.google.com/macros/s/AKfycby1_'));
-t('hidden iframe bridge transport used',bridge.includes('INCENTIFY_API_REQUEST')&&bridge.includes('contentWindow.postMessage')&&bridge.includes('event.source!==this.iframe.contentWindow'));
+t('nested-safe MessageChannel bridge transport used',bridge.includes('MessageChannel')||bridge.includes('event.ports')&&bridge.includes('this.port.postMessage'));
+t('runtime bridge channel nonce is used',bridge.includes('randomUUID')&&bridge.includes("'channel='+encodeURIComponent(this.channel)"));
 t('no direct google.script.run in GitHub frontend',![login,erp,adapter,bridge,config,auth,admin].some(x=>x.includes('google.script.run')));
 t('admin UI has users/sessions/login/audit/issues',admin.includes('Users')&&admin.includes('Sessions')&&admin.includes('Login History')&&admin.includes('Audit Log')&&admin.includes('Issues'));
 t('admin requires server-validated ADMIN role',auth.includes('requireAdmin')&&admin.includes('Auth.requireAdmin'));
@@ -20,4 +21,4 @@ t('web Razorpay description no longer says Windows secure storage',!erp.includes
 t('no Electron/npm runtime dependency',!fs.existsSync(path.join(root,'package.json'))&&!erp.includes('INCENTIFY Billing Desktop v4.0.0'));
 t('no obvious Razorpay production key literal committed',!/(rzp_(test|live)_[A-Za-z0-9]{8,})/.test([login,erp,adapter,config,auth,admin].join('\n')));
 t('GitHub Pages marker exists',fs.existsSync(path.join(root,'.nojekyll')));
-if(fail){console.error('\n'+fail+' verification(s) failed.');process.exit(1)}console.log('\nINCENTIFY GitHub frontend v5.1 verification passed.');
+if(fail){console.error('\n'+fail+' verification(s) failed.');process.exit(1)}console.log('\nINCENTIFY GitHub frontend v5.1.1 verification passed.');
